@@ -20,25 +20,31 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from django.views import generic
-from django.core.urlresolvers import reverse_lazy
+from django.shortcuts import render
+from random import shuffle
 
-from .models import Word, Phrase, Category, Translation
+from .models import Word
 
-class WordCreate(generic.edit.CreateView):
-    model = Word
-    fields = '__all__'
-    template_name_suffix = '_create_form'
-    #success_url = reverse_lazy('lotteryuser-list')
+NUM_OPTIONS = 4
 
 
-#class WordUpdate(generic.edit.UpdateView):
-#    model = Word
-#    fields = ['name', 'number', 'prize']
-#    template_name_suffix = '_update_form'
-#    #success_url = reverse_lazy('lotteryuser-list')
+def generate_options(list_options, num_options):
+    """
+    Return a right option and a list of shuffle options
+    """
+    right_option = list_options[0]
+    options = list_options[0:num_options]
+    shuffle(options)
+    return right_option, options
 
-
-#class WordDelete(generic.edit.DeleteView):
-#    model = Word
-#    #success_url = reverse_lazy('lotteryuser-list')
+def index(request):
+    """
+    View to the vocabulary game
+    """
+    list_words = list(Word.objects.all())
+    right_answer, answers = generate_options(list_words, NUM_OPTIONS)
+    context = {
+            'right_answer': right_answer,
+            'answers': answers
+            }
+    return render(request, 'vocabulary_game/index.html', context)
