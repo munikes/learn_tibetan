@@ -22,36 +22,14 @@
 
 from django.db import models
 
-class Word(models.Model):
-    word = models.CharField(max_length=200)
-    image = models.ImageField(upload_to="images/",blank=True)
-    pronunciation = models.FileField(upload_to="pronunciations/", blank=True)
-    is_formal = models.BooleanField (default=False)
-    context = models.TextField()
-    thl_phonetic_transcription = models.CharField(max_length=200,
-            help_text="THL Simplified Phonetic Transcription of Standard Tibetan")
-    thl_wylie_transliteration = models.CharField(max_length=200,
-            help_text="THL Extended Wylie Transliteration")
-    grammar = models.CharField(max_length=200)
-
-
-class Phrase(models.Model):
-    phrase = models.CharField(max_length=200)
-    image = models.ImageField(upload_to="images/",blank=True)
-    pronunciation = models.FileField(upload_to="pronunciations/", blank=True)
-    is_formal = models.BooleanField (default=False)
-    context = models.TextField()
-    thl_phonetic_transcription = models.CharField(max_length=200,
-            help_text="THL Simplified Phonetic Transcription of Standard Tibetan")
-    thl_wylie_transliteration = models.CharField(max_length=200,
-            help_text="THL Extended Wylie Transliteration")
-
-
 class Category(models.Model):
-    word_category = models.ManyToManyField(Word, related_name="word_category",
-            blank=True)
-    phrase_category = models.ManyToManyField(Phrase, related_name="phrase_category",
-            blank=True)
+    category = models.CharField(max_length=200)
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+
+    def __str__(self):
+        return self.category
 
 
 class Translation(models.Model):
@@ -60,9 +38,51 @@ class Translation(models.Model):
              ('en', 'English'),
     )
 
-    translation = models.ManyToManyField(Word, related_name="word_translation",
-            blank=True)
+    translation = models.CharField(max_length=200)
     #The Language Code ISO 639-1
     language_code = models.CharField(max_length=2,choices=LANGUAGE_CODE_CHOICES,
                                                   default='es')
-    definition = models.TextField()
+    definition = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.translation
+
+
+class Phrase(models.Model):
+    phrase = models.CharField(max_length=200)
+    image = models.ImageField(upload_to="images/", blank=True)
+    pronunciation = models.FileField(upload_to="pronunciations/", blank=True)
+    is_honorific = models.BooleanField (default=False)
+    thl_phonetic_transcription = models.CharField(max_length=200,
+            help_text="THL Simplified Phonetic Transcription of Standard Tibetan", blank=True)
+    thl_wylie_transliteration = models.CharField(max_length=200,
+            help_text="THL Extended Wylie Transliteration", blank=True)
+    categories = models.ManyToManyField(Category, related_name="phrase_category",
+            blank=True)
+    translation = models.ManyToManyField(Translation, related_name="pharse_translation",
+            blank=True)
+
+    def __str__(self):
+        return self.phrase
+
+
+class Word(models.Model):
+    word = models.CharField(max_length=200)
+    image = models.ImageField(upload_to="images/",blank=True)
+    pronunciation = models.FileField(upload_to="pronunciations/", blank=True)
+    is_honorific = models.BooleanField (default=False)
+    thl_phonetic_transcription = models.CharField(max_length=200,
+            help_text="THL Simplified Phonetic Transcription of Standard Tibetan", blank=True)
+    thl_wylie_transliteration = models.CharField(max_length=200,
+            help_text="THL Extended Wylie Transliteration", blank=True)
+    grammar = models.CharField(max_length=200, blank=True)
+    phrase = models.ManyToManyField(Phrase, related_name="word_phrase",
+            blank=True)
+    categories = models.ManyToManyField(Category, related_name="word_category",
+            blank=True)
+    translation = models.ManyToManyField(Translation, related_name="word_translation",
+            blank=True)
+
+    def __str__(self):
+        return self.word
+
