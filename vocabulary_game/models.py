@@ -23,12 +23,12 @@
 from django.db import models
 
 class Category(models.Model):
-    category = models.CharField(max_length=200)
+    category = models.CharField(max_length=200, unique=True)
 
     class Meta:
         verbose_name_plural = 'Categories'
 
-    def __str__(self):
+    def __unicode__(self):
         return self.category
 
 
@@ -38,18 +38,18 @@ class Translation(models.Model):
              ('en', 'English'),
     )
 
-    translation = models.CharField(max_length=200)
+    translation = models.CharField(max_length=200, unique=True)
     #The Language Code ISO 639-1
     language_code = models.CharField(max_length=2,choices=LANGUAGE_CODE_CHOICES,
                                                   default='es')
     definition = models.TextField(blank=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.translation
 
 
 class Phrase(models.Model):
-    phrase = models.CharField(max_length=200)
+    phrase = models.CharField(max_length=200, unique=True)
     image = models.ImageField(upload_to="images/", blank=True)
     pronunciation = models.FileField(upload_to="pronunciations/", blank=True)
     is_honorific = models.BooleanField (default=False)
@@ -62,12 +62,12 @@ class Phrase(models.Model):
     translation = models.ManyToManyField(Translation, related_name="pharse_translation",
             blank=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.phrase
 
 
 class Word(models.Model):
-    word = models.CharField(max_length=200)
+    word = models.CharField(max_length=200, unique=True)
     image = models.ImageField(upload_to="images/",blank=True)
     pronunciation = models.FileField(upload_to="pronunciations/", blank=True)
     is_honorific = models.BooleanField (default=False)
@@ -83,6 +83,6 @@ class Word(models.Model):
     translation = models.ManyToManyField(Translation, related_name="word_translation",
             blank=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.word
 
