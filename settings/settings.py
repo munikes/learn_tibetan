@@ -81,10 +81,12 @@ WSGI_APPLICATION = 'settings.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'learn_tibetan',
-        'USER': 'dondrup',
-        'PASSWORD': 'dalailama',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'learn_tibetan',          # Or path to database file if using sqlite3.
+        'USER': 'dondrup',          # Not used with sqlite3.
+        'PASSWORD': 'dalailama',   # Not used with sqlite3.
+        'HOST': 'localhost',       # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',                # Set to empty string for default. Not used with sqlite3.
     }
 }
 
