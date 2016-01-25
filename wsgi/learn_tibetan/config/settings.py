@@ -1,5 +1,5 @@
 """
-Django settings for myproject project.
+Django settings for learn_tibetan project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.8/topics/settings/
@@ -15,6 +15,8 @@ BASE_DIR = os.path.dirname(DJ_PROJECT_DIR)
 WSGI_DIR = os.path.dirname(BASE_DIR)
 REPO_DIR = os.path.dirname(WSGI_DIR)
 DATA_DIR = os.environ.get('OPENSHIFT_DATA_DIR', BASE_DIR)
+DB_HOST = os.environ.get('OPENSHIFT_POSTGRESQL_DB_HOST', BASE_DIR)
+DB_PORT = os.environ.get('OPENSHIFT_POSTGRESQL_DB_PORT', BASE_DIR)
 
 import sys
 sys.path.append(os.path.join(REPO_DIR, 'libs'))
@@ -42,12 +44,15 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = (
+    'bootstrap_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'vocabulary_game.apps.VocabularyGameConfig',
+    'bootstrap3',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -61,7 +66,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 # GETTING-STARTED: change 'myproject' to your project name:
-ROOT_URLCONF = 'myproject.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
@@ -79,7 +84,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'myproject.wsgi.application'
+WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database
@@ -87,16 +92,19 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        # GETTING-STARTED: change 'db.sqlite3' to your sqlite3 database:
-        'NAME': os.path.join(DATA_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgres_psycog2',
+        'NAME': 'learntibetan',          # Or path to database file if using sqlite3.
+        'USER': 'admin9ulrrjw',          # Not used with sqlite3.
+        'PASSWORD': 'cpm6EhIu1NMZ',   # Not used with sqlite3.
+        'HOST': DB_HOST,       # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': DB_PORT,                # Set to empty string for default. Not used with sqlite3.
     }
 }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -112,3 +120,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(WSGI_DIR, 'static')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>{{ right_answer.word }}</h1>
+    <p>
+    {% buttons %}
+    {% for answer in answers %}
+    <button type="submit" class="btn btn-default btn-lg">
+        {% if answer.translation.count != 1 %}
+        {{ answer.translation.all|random }} {% bootstrap_icon "question-sign" %}
+        {% else %}
+        {{ answer.translation.get }} {% bootstrap_icon "question-sign" %}
+        {% endif %}
+    </button>
+    {% endfor %}
+    {% endbuttons %}
+    </p>
+</div>
+
+{% endblock %}
