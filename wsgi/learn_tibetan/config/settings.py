@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgres_psycog2',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'learntibetan',          # Or path to database file if using sqlite3.
         'USER': 'admin9ulrrjw',          # Not used with sqlite3.
         'PASSWORD': 'cpm6EhIu1NMZ',   # Not used with sqlite3.
