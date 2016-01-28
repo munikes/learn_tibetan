@@ -23,6 +23,14 @@
 from django.db import models
 
 class Category(models.Model):
+    LANGUAGE_CODE_CHOICES = (
+             ('es', 'Español'),
+             ('en', 'English'),
+    )
+
+    #The Language Code ISO 639-1
+    language_code = models.CharField(max_length=2,choices=LANGUAGE_CODE_CHOICES,
+                                                  default='es')
     category = models.CharField(max_length=200, unique=True)
 
     class Meta:
