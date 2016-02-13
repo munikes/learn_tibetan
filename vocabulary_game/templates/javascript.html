@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block javascript %}
+
+<script>
+$('.btn').click(function(){
+    if ($(this).is('#{{ right_answer.id }}')){
+        $(this).removeClass('btn-default').addClass('btn-success');
+        $('.glyphicon', this).removeClass('glyphicon-question-sign').addClass('glyphicon-ok-sign');
+        $.playSound('{% static "sounds/right.ogg" %}');
+    } else {
+        $(this).removeClass('btn-default').addClass('btn-danger');
+        $('.glyphicon', this).removeClass('glyphicon-question-sign').addClass('glyphicon-remove-sign');
+        $.playSound('{% static "sounds/wrong.ogg" %}');
+    }
+});
+</script>
+
+{% endblock %}

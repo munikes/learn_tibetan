@@ -32,9 +32,9 @@ def generate_options(list_options, num_options):
     """
     Return a right option and a list of shuffle options
     """
+    shuffle(list_options)
     right_option = list_options[0]
     options = list_options[0:num_options]
-    shuffle(options)
     return right_option, options
 
 def index(request):
@@ -43,8 +43,9 @@ def index(request):
     """
     list_words = list(Word.objects.all())
     right_answer, answers = generate_options(list_words, NUM_OPTIONS)
+    shuffle(answers)
     context = {
             'right_answer': right_answer,
             'answers': answers
             }
-    return render(request, 'vocabulary_game/index.html', context)
+    return render(request, 'index.html', context)

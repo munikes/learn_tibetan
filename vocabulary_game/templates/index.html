@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "javascript.html" %}
 
 {% load bootstrap3 %}
 
@@ -9,7 +9,7 @@
     <p>
     {% buttons %}
     {% for answer in answers %}
-    <button type="submit" class="btn btn-default btn-lg">
+    <button type="submit" class="btn btn-default btn-lg" id={{ answer.id }}>
         {% if answer.translation.count != 1 %}
         {{ answer.translation.all|random }} {% bootstrap_icon "question-sign" %}
         {% else %}

@@ -1,6 +1,5 @@
 {% load i18n %}
 
-{# Load the tag library #}
 {% load bootstrap3 %}
 
 {% load staticfiles %}
@@ -21,9 +20,27 @@
 </head>
 <body>
   <div class="container">
-    {% block content %}{% endblock %}
+      <div class="header clearfix">
+          <nav>
+              <ul class="nav nav-pills pull-right">
+                  <li class="active" role="presentation">
+                      <a href="#">Home</a>
+                  </li>
+                  <li role="presentation">
+                      <a href="#">About</a>
+                  </li>
+                  <li role="presentation">
+                      <a href="#">Contact</a>
+                  </li>
+              </ul>
+          </nav>
+          <h3 class="text-muted">{{ the_title }}</h3>
+      </div>
+      {% block content %}{% endblock %}
   </div>
   {# Load JavaScript #}
   {% bootstrap_javascript jquery=1 %}
+  <script type="text/javascript" src="{% static "js/jquery-play-sound/jquery.playSound.js" %}"></script>
+  {% block javascript %}{% endblock %}
 </body>
 </html>

@@ -94,3 +94,6 @@ class Word(models.Model):
     def __unicode__(self):
         return self.word
 
+class Score(models.Model):
+    name = models.CharField(max_length=200, blank=True)
+    score = models.PositiveSmallIntegerField(default=0)
