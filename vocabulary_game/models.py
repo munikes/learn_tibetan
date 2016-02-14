@@ -88,8 +88,7 @@ class Word(models.Model):
             blank=True)
     categories = models.ManyToManyField(Category, related_name="word_category",
             blank=True)
-    translation = models.ManyToManyField(Translation, related_name="word_translation",
-            blank=True)
+    translation = models.ManyToManyField(Translation, related_name="word_translation")
 
     def __unicode__(self):
         return self.word

@@ -9,11 +9,15 @@ $('.btn').click(function(){
     if ($(this).is('#{{ right_answer.id }}')){
         $(this).removeClass('btn-default').addClass('btn-success');
         $('.glyphicon', this).removeClass('glyphicon-question-sign').addClass('glyphicon-ok-sign');
-        $.playSound('{% static "sounds/right.ogg" %}');
+        $('[name=score]').val(parseInt($('[name=score]').val()) + 1);
+        //var audio = new Audio('{% static "sounds/right.ogg" %}');
+        //audio.play();
     } else {
         $(this).removeClass('btn-default').addClass('btn-danger');
         $('.glyphicon', this).removeClass('glyphicon-question-sign').addClass('glyphicon-remove-sign');
-        $.playSound('{% static "sounds/wrong.ogg" %}');
+        $('[name=score]').val($('[name=score]').val());
+        //var audio = new Audio('{% static "sounds/wrong.ogg" %}');
+        //audio.play();
     }
 });
 </script>

@@ -44,8 +44,19 @@ def index(request):
     list_words = list(Word.objects.all())
     right_answer, answers = generate_options(list_words, NUM_OPTIONS)
     shuffle(answers)
-    context = {
+    score = 0
+    if request.method == 'POST':
+        score = int(request.POST.get('score'))
+        #TODO print score
+        context = {
             'right_answer': right_answer,
-            'answers': answers
-            }
+            'answers': answers,
+            'score':score
+        }
+        return render(request, 'index.html', context)
+    context = {
+        'right_answer': right_answer,
+        'answers': answers,
+        'score':score
+    }
     return render(request, 'index.html', context)
