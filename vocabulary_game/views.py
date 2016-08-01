@@ -53,10 +53,10 @@ def index(request):
             'answers': answers,
             'score':score
         }
-        return render(request, 'index.html', context)
+        return render(request, 'vocabulary_game/index.html', context)
     context = {
         'right_answer': right_answer,
         'answers': answers,
         'score':score
     }
-    return render(request, 'index.html', context)
+    return render(request, 'vocabulary_game/index.html', context)
