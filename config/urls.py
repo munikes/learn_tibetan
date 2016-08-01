@@ -19,4 +19,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^vocabulary/', include('vocabulary_game.urls')),
+    url(r'^translator/', include('translator.urls')),
 ]
