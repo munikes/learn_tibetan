@@ -21,11 +21,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 class Category(models.Model):
     LANGUAGE_CODE_CHOICES = (
-             ('es', 'Español'),
-             ('en', 'English'),
+             ('es', _('Spanish')),
+             ('en', _('English')),
     )
 
     #The Language Code ISO 639-1
@@ -34,7 +35,7 @@ class Category(models.Model):
     category = models.CharField(max_length=200, unique=True)
 
     class Meta:
-        verbose_name_plural = 'Categories'
+        verbose_name_plural = _('Categories')
 
     def __unicode__(self):
         return self.category
@@ -42,8 +43,8 @@ class Category(models.Model):
 
 class Translation(models.Model):
     LANGUAGE_CODE_CHOICES = (
-             ('es', 'Español'),
-             ('en', 'English'),
+             ('es', _('Spanish')),
+             ('en', _('English')),
     )
 
     translation = models.CharField(max_length=200, unique=True)
@@ -62,12 +63,12 @@ class Phrase(models.Model):
     pronunciation = models.FileField(upload_to="pronunciations/", blank=True)
     is_honorific = models.BooleanField (default=False)
     thl_phonetic_transcription = models.CharField(max_length=200,
-            help_text="THL Simplified Phonetic Transcription of Standard Tibetan", blank=True)
+            help_text=_("THL Simplified Phonetic Transcription of Standard Tibetan"), blank=True)
     thl_wylie_transliteration = models.CharField(max_length=200,
-            help_text="THL Extended Wylie Transliteration", blank=True)
+            help_text=_("THL Extended Wylie Transliteration"), blank=True)
     categories = models.ManyToManyField(Category, related_name="phrase_category",
             blank=True)
-    translation = models.ManyToManyField(Translation, related_name="pharse_translation",
+    translation = models.ManyToManyField(Translation, related_name="phrase_translation",
             blank=True)
 
     def __unicode__(self):
@@ -80,9 +81,9 @@ class Word(models.Model):
     pronunciation = models.FileField(upload_to="pronunciations/", blank=True)
     is_honorific = models.BooleanField (default=False)
     thl_phonetic_transcription = models.CharField(max_length=200,
-            help_text="THL Simplified Phonetic Transcription of Standard Tibetan", blank=True)
+            help_text=_("THL Simplified Phonetic Transcription of Standard Tibetan"), blank=True)
     thl_wylie_transliteration = models.CharField(max_length=200,
-            help_text="THL Extended Wylie Transliteration", blank=True)
+            help_text=_("THL Extended Wylie Transliteration"), blank=True)
     grammar = models.CharField(max_length=200, blank=True)
     phrase = models.ManyToManyField(Phrase, related_name="word_phrase",
             blank=True)
