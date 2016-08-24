@@ -104,6 +104,9 @@ DATABASES = {
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
+LOCALE_PATHS = [
+        os.path.join(BASE_DIR, 'core/locale'),
+       ]
 
 LANGUAGE_CODE = 'es'
 
