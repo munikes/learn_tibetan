@@ -38,9 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'translator.apps.TranslatorConfig',
-    'vocabulary_game.apps.VocabularyGameConfig',
     'bootstrap3',
+    'core'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -91,6 +90,9 @@ DATABASES = {
     }
 }
 
+LOCALE_PATHS = [
+        os.path.join(BASE_DIR, 'core/locale'),
+       ]
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/

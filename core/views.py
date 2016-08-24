@@ -1,7 +1,8 @@
 #    This Python file uses the following encoding: utf-8 .
 #    See http://www.python.org/peps/pep-0263.html for details
 
-#    Its a vocabulary game which allows anyone to learn tibetan.
+#    Its a views of vocabulary games and translator which allows anyone to 
+#    learn tibetan.
 #
 #    Copyright (C) 2015 Tsering Döndrub
 #
@@ -23,7 +24,7 @@
 from django.shortcuts import render
 from random import shuffle
 
-from .models import Word
+from core.models import Word
 
 NUM_OPTIONS = 4
 
@@ -37,7 +38,7 @@ def generate_options(list_options, num_options):
     options = list_options[0:num_options]
     return right_option, options
 
-def index(request):
+def vocabulary_game(request):
     """
     View to the vocabulary game
     """
@@ -60,3 +61,24 @@ def index(request):
         'score':score
     }
     return render(request, 'vocabulary_game/index.html', context)
+
+def translator(request):
+    """
+    Get word translation
+    """
+    translate = []
+    if request.method == 'POST':
+        if (request.POST.get('tibetan') == 'true'):
+            word = request.POST.get('origin')
+            if Word.objects.filter(translation__translation=word).exists():
+                translate = Word.objects.filter(translation__translation=word)
+        elif(request.POST.get('spanish') == 'true'):
+            word = request.POST.get('origin')
+            if Word.objects.filter(word=word).exists():
+                translate = Word.objects.get(word=word).translation.all()
+        context = {
+            'origin': word,
+            'result': translate
+        }
+        return render(request, 'translator/index.html', context)
+    return render(request, 'translator/index.html')

@@ -4,6 +4,7 @@
 
 {% load staticfiles %}
 
+{% trans "Tibetan <-> Spanish" as the_title %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,13 +15,13 @@
   {# Display django.contrib.messages as Bootstrap alerts #}
   {% bootstrap_messages %}
   <!-- Sign in styles -->
-  <link href="{% static "css/signin.css" %}" rel="stylesheet">
+  <link href="{% static "css/jumbotron-narrow.css" %}" rel="stylesheet">
   <title>{{ the_title }}</title>
 </head>
 <body>
   <div class="container">
       <div class="header clearfix">
-          <nav>
+          <!--nav>
               <ul class="nav nav-pills pull-right">
                   <li class="active" role="presentation">
                       <a href="#">Home</a>
@@ -32,13 +33,10 @@
                       <a href="#">Contact</a>
                   </li>
               </ul>
-          </nav>
+          </nav-->
           <h3 class="text-muted">{{ the_title }}</h3>
       </div>
       {% block content %}{% endblock %}
   </div>
-  {# Load JavaScript #}
-  {% bootstrap_javascript jquery=1 %}
-  {% block javascript %}{% endblock %}
 </body>
 </html>
