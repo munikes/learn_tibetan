@@ -1,0 +1,25 @@
+{% extends "vocabulary_game/base.html" %}
+
+{% load staticfiles %}
+
+{% block javascript %}
+
+<script>
+$('.btn').click(function(){
+    if ($(this).is('#{{ right_answer.id }}')){
+        $(this).removeClass('btn-default').addClass('btn-success');
+        $('.glyphicon', this).removeClass('glyphicon-question-sign').addClass('glyphicon-ok-sign');
+        $('[name=score]').val(parseInt($('[name=score]').val()) + 1);
+        //var audio = new Audio('{% static "sounds/right.ogg" %}');
+        //audio.play();
+    } else {
+        $(this).removeClass('btn-default').addClass('btn-danger');
+        $('.glyphicon', this).removeClass('glyphicon-question-sign').addClass('glyphicon-remove-sign');
+        $('[name=score]').val($('[name=score]').val());
+        //var audio = new Audio('{% static "sounds/wrong.ogg" %}');
+        //audio.play();
+    }
+});
+</script>
+
+{% endblock %}

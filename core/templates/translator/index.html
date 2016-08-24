@@ -1,0 +1,36 @@
+{% extends "translator/base.html" %}
+
+{% load i18n %}
+
+{% load bootstrap3 %}
+
+{% block content %}
+
+{% trans "Click the button to the language you want to translate the word" as description %}
+{% trans "No results" as no_result %}
+{% trans "Spanish" as spanish %}
+{% trans "Tibetan" as tibetan %}
+
+<div class="jumbotron">
+    <form action="." method="post" class="form">
+        {% csrf_token %}
+        <!--h1>{{ subtitle }}</h1-->
+        <p class="lead">{{ description }}</p>
+        <div class="row">
+            <input class="form-control" name="origin" value={{ origin }}></input>
+        <div>
+        <p>
+            <button type="submit" class="btn btn-info" name="tibetan" value="true">{{ tibetan }}</button>
+            <button type="submit" class="btn btn-info" name="spanish" value="true">{{ spanish }}</button>
+        </p>
+        {% if result %}
+            {% for translate in result %}
+                <h2>{{ translate }}</h2>
+            {% endfor %}
+        {% else %}
+            <h2>{{ no_result }}</h2>
+        {% endif %}
+    </form>
+</div>
+
+{% endblock %}
