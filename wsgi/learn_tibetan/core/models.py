@@ -51,7 +51,7 @@ class Translation(models.Model):
     #The Language Code ISO 639-1
     language_code = models.CharField(max_length=2,choices=LANGUAGE_CODE_CHOICES,
                                                   default='es')
-    definition = models.TextField(blank=True)
+    definition = models.TextField(blank=True, null=True)
 
     def __unicode__(self):
         return self.translation
