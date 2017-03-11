@@ -48,7 +48,7 @@ class Translation(models.Model):
              ('en', _('English')),
     )
 
-    translation = models.CharField(max_length=200, unique=True)
+    translation = models.CharField(max_length=200)
     #The Language Code ISO 639-1
     language_code = models.CharField(max_length=2,choices=LANGUAGE_CODE_CHOICES,
                                                   default='es')
@@ -56,6 +56,7 @@ class Translation(models.Model):
 
     class Meta:
         ordering = ['translation']
+        unique_together = (('translation', 'language_code'),)
 
     def __unicode__(self):
         return self.translation
