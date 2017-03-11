@@ -78,7 +78,7 @@ class Phrase(models.Model):
 class Word(models.Model):
     word = models.CharField(max_length=200, unique=True)
     image = models.ImageField(upload_to="images/",blank=True,null=True)
-    pronunciation = models.FileField(upload_to="pronunciations/", blank=True)
+    pronunciation = models.FileField(upload_to="pronunciations/", blank=True,null=True)
     is_honorific = models.BooleanField (default=False)
     thl_phonetic_transcription = models.CharField(max_length=200,
             help_text=_("THL Simplified Phonetic Transcription of Standard Tibetan"), blank=True)
