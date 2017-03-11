@@ -79,12 +79,12 @@ class Word(models.Model):
     word = models.CharField(max_length=200, unique=True)
     image = models.ImageField(upload_to="images/",blank=True,null=True)
     pronunciation = models.FileField(upload_to="pronunciations/", blank=True,null=True)
-    is_honorific = models.BooleanField (default=False)
+    is_honorific = models.NullBooleanField (default=False,null=True)
     thl_phonetic_transcription = models.CharField(max_length=200,
-            help_text=_("THL Simplified Phonetic Transcription of Standard Tibetan"), blank=True)
+            help_text=_("THL Simplified Phonetic Transcription of Standard Tibetan"), blank=True,null=True)
     thl_wylie_transliteration = models.CharField(max_length=200,
-            help_text=_("THL Extended Wylie Transliteration"), blank=True)
-    grammar = models.CharField(max_length=200, blank=True)
+            help_text=_("THL Extended Wylie Transliteration"), blank=True,null=True)
+    grammar = models.CharField(max_length=200, blank=True,null=True)
     phrase = models.ManyToManyField(Phrase, related_name="word_phrase",
             blank=True)
     categories = models.ManyToManyField(Category, related_name="word_category",
