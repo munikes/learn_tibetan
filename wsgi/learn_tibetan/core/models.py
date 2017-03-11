@@ -36,6 +36,7 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = _('Categories')
+        ordering = ['category']
 
     def __unicode__(self):
         return self.category
@@ -52,6 +53,9 @@ class Translation(models.Model):
     language_code = models.CharField(max_length=2,choices=LANGUAGE_CODE_CHOICES,
                                                   default='es')
     definition = models.TextField(blank=True, null=True)
+
+    class Meta:
+        ordering = ['translation']
 
     def __unicode__(self):
         return self.translation
@@ -70,6 +74,9 @@ class Phrase(models.Model):
             blank=True)
     translation = models.ManyToManyField(Translation, related_name="phrase_translation",
             blank=True)
+
+    class Meta:
+        ordering = ['phrase']
 
     def __unicode__(self):
         return self.phrase
@@ -90,6 +97,9 @@ class Word(models.Model):
     categories = models.ManyToManyField(Category, related_name="word_category",
             blank=True)
     translation = models.ManyToManyField(Translation, related_name="word_translation")
+
+    class Meta:
+        ordering = ['word']
 
     def __unicode__(self):
         return self.word
