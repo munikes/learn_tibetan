@@ -75,7 +75,7 @@ def translator(request):
         elif(request.POST.get('spanish') == 'true'):
             answer = request.POST.get('origin')
             if Word.objects.filter(word=answer).exists():
-                response = Word.objects.get(word=answer).translation.all()
+                response = Word.objects.get(word=answer).translation.filter(language_code='es')
         context = {
             'origin': answer,
             'result': response
