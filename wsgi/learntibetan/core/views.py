@@ -66,19 +66,19 @@ def translator(request):
     """
     Get word translation
     """
-    translate = []
+    response = []
     if request.method == 'POST':
         if (request.POST.get('tibetan') == 'true'):
-            word = request.POST.get('origin')
-            if Word.objects.filter(translation__translation=word).exists():
-                translate = Word.objects.filter(translation__translation=word)
+            answer = request.POST.get('origin')
+            if Word.objects.filter(translation__translation=answer).exists():
+                response = Word.objects.filter(translation__translation=answer)
         elif(request.POST.get('spanish') == 'true'):
-            word = request.POST.get('origin')
-            if Word.objects.filter(word=word).exists():
-                translate = Word.objects.get(word=word).translation.all()
+            answer = request.POST.get('origin')
+            if Word.objects.filter(word=answer).exists():
+                response = Word.objects.get(word=answer).translation.all()
         context = {
-            'origin': word,
-            'result': translate
+            'origin': answer,
+            'result': response
         }
         return render(request, 'translator/index.html', context)
     return render(request, 'translator/index.html')

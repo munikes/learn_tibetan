@@ -97,8 +97,8 @@ DATABASES = {
         'NAME': 'learntibetan',          # Or path to database file if using sqlite3.
         'USER': 'admin9ulrrjw',          # Not used with sqlite3.
         'PASSWORD': 'cpm6EhIu1NMZ',   # Not used with sqlite3.
-        'HOST': DB_HOST,       # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': DB_PORT,                # Set to empty string for default. Not used with sqlite3.
+        'HOST': '127.0.0.1',       # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '5432',                # Set to empty string for default. Not used with sqlite3.
     }
 }
 
