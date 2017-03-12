@@ -22,6 +22,10 @@ REPO_DIR = os.path.dirname(WSGI_DIR)
 DATA_DIR = os.environ.get('OPENSHIFT_DATA_DIR', BASE_DIR)
 DB_HOST = os.environ.get('OPENSHIFT_POSTGRESQL_DB_HOST', '127.0.0.1')
 DB_PORT = os.environ.get('OPENSHIFT_POSTGRESQL_DB_PORT', '5432')
+DB_USER = os.environ.get('DB_USER')
+DB_PASSWORD = os.environ.get('DB_PASSWORD')
+DB_USER = os.environ.get('OPENSHIFT_POSTGRESQL_DB_USERNAME', DB_USER)
+DB_PASSWORD = os.environ.get('OPENSHIFT_POSTGRESQL_DB_PASSWORD', DB_PASSWORD)
 
 
 if ON_OPENSHIFT:
@@ -37,7 +41,7 @@ if ON_OPENSHIFT:
     SECRET_KEY = SECRETS['secret_key']
 else:
     # Make this unique, and don't share it with anybody.
-    SECRET_KEY = 'c(3k-a#d9-6+uf&amp;@att-jv=j^uvpv*)&amp;n%o!)^^3!hp5@6s$o^'
+    SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG') == 'True'
@@ -105,8 +109,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'learntibetan',          # Or path to database file if using sqlite3.
-        'USER': 'admin9ulrrjw',          # Not used with sqlite3.
-        'PASSWORD': 'cpm6EhIu1NMZ',   # Not used with sqlite3.
+        'USER': DB_USER,          # Not used with sqlite3.
+        'PASSWORD': DB_PASSWORD,   # Not used with sqlite3.
         'HOST': DB_HOST,       # Set to empty string for localhost. Not used with sqlite3.
         'PORT': DB_PORT,                # Set to empty string for default. Not used with sqlite3.
     }
