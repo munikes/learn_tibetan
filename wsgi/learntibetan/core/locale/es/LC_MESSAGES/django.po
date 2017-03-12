@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: core/apps.py:6
-msgid "learn_tibetan"
+msgid "learntibetan"
 msgstr ""
 
 #: core/apps.py:7

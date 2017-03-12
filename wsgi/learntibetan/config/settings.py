@@ -1,5 +1,5 @@
 """
-Django settings for learn_tibetan project.
+Django settings for learntibetan project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.8/topics/settings/
