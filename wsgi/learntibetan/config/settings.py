@@ -10,24 +10,34 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
+ON_OPENSHIFT = False
+if os.environ.has_key('OPENSHIFT_REPO_DIR'):
+    ON_OPENSHIFT = True
+
 DJ_PROJECT_DIR = os.path.dirname(__file__)
 BASE_DIR = os.path.dirname(DJ_PROJECT_DIR)
 WSGI_DIR = os.path.dirname(BASE_DIR)
 REPO_DIR = os.path.dirname(WSGI_DIR)
 DATA_DIR = os.environ.get('OPENSHIFT_DATA_DIR', BASE_DIR)
-DB_HOST = os.environ.get('OPENSHIFT_POSTGRESQL_DB_HOST', BASE_DIR)
-DB_PORT = os.environ.get('OPENSHIFT_POSTGRESQL_DB_PORT', BASE_DIR)
+DB_HOST = os.environ.get('OPENSHIFT_POSTGRESQL_DB_HOST', '127.0.0.1')
+DB_PORT = os.environ.get('OPENSHIFT_POSTGRESQL_DB_PORT', '5432')
 
-import sys
-sys.path.append(os.path.join(REPO_DIR, 'libs'))
-import secrets
-SECRETS = secrets.getter(os.path.join(DATA_DIR, 'secrets.json'))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
+if ON_OPENSHIFT:
+    import sys
+    sys.path.append(os.path.join(REPO_DIR, 'libs'))
+    import secrets
+    SECRETS = secrets.getter(os.path.join(DATA_DIR, 'secrets.json'))
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = SECRETS['secret_key']
+    # Quick-start development settings - unsuitable for production
+    # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
+
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = SECRETS['secret_key']
+else:
+    # Make this unique, and don't share it with anybody.
+    SECRET_KEY = 'c(3k-a#d9-6+uf&amp;@att-jv=j^uvpv*)&amp;n%o!)^^3!hp5@6s$o^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG') == 'True'
