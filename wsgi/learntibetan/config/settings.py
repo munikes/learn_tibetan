@@ -127,7 +127,7 @@ else:
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 LOCALE_PATHS = [
-        os.path.join(BASE_DIR, 'core/locale'),
+        os.path.join(BASE_DIR, 'core', 'locale'),
        ]
 
 LANGUAGE_CODE = 'es'
@@ -141,13 +141,13 @@ USE_L10N = True
 USE_TZ = True
 
 # Initial data
-FIXTURE_DIRS = (os.path.join(REPO_DIR, 'core', 'fixtures'),)
+FIXTURE_DIRS = (os.path.join(BASE_DIR, 'core', 'fixtures'),)
 
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(REPO_DIR, 'core', 'static'),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'core', 'static'),)
 STATIC_ROOT = os.path.join(WSGI_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
