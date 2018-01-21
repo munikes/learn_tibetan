@@ -22,6 +22,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from django.shortcuts import render
+from django.http import HttpResponse
 from random import shuffle
 
 from core.models import Word
