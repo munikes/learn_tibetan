@@ -82,3 +82,6 @@ def translator(request):
         }
         return render(request, 'translator/index.html', context)
     return render(request, 'translator/index.html')
+
+def health(request):
+    return HttpResponse(PageView.objects.count())
