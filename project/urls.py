@@ -1,21 +1,12 @@
-from django.conf import settings
-from django.conf.urls import include, url
-from django.contrib import admin
+from django.conf.urls import url
 
-from welcome.views import index, health
+from core import views
 
 urlpatterns = [
-    # Examples:
-    # url(r'^$', 'project.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
-    url(r'^$', index),
-    url(r'^health$', health),
-    url(r'^admin/', include(admin.site.urls)),
+    #url(r'^create/$', views.WordCreate.as_view(), name='word-create'),
+    #url(r'^update/(?P<pk>\d+)$', login_required(views.LotteryUserUpdate.as_view()), name='lotteryuser-update'),
+    #url(r'^delete/(?P<pk>\d+)$', login_required(views.LotteryUserDelete.as_view()), name='lotteryuser-delete'),
+    #url(r'^logout/$', auth_views.logout, name="logout"),
+    url(r'^translator/$', views.translator, name="translator"),
+    url(r'^vocabulary/$', views.vocabulary_game, name="vocabulary_game"),
 ]
-
-if settings.DEBUG:
-    import debug_toolbar
-    urlpatterns = [
-        url(r'^__debug__/', include(debug_toolbar.urls)),
-    ] + urlpatterns
