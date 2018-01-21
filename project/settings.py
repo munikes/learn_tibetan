@@ -36,14 +36,15 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar',
-    'welcome',
+    'core',
+    'bootstrap3',
 ]
 
 MIDDLEWARE = [
@@ -54,8 +55,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -111,7 +110,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LOCALE_PATHS = [
+        os.path.join(BASE_DIR, 'core', 'locale'),
+       ]
+
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'UTC'
 
@@ -120,6 +123,10 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+# Initial data
+FIXTURE_DIRS = (os.path.join(BASE_DIR, 'core', 'fixtures'),)
 
 
 # Static files (CSS, JavaScript, Images)

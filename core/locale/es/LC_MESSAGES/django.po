@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-21 00:33+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: models.py:28 models.py:47 templates/translator/index.html:11
+msgid "Spanish"
+msgstr "Español"
+
+#: models.py:29 models.py:48
+msgid "English"
+msgstr "Inglés"
+
+#: models.py:38
+msgid "Categories"
+msgstr "Categorias"
+
+#: models.py:71 models.py:92
+msgid "THL Simplified Phonetic Transcription of Standard Tibetan"
+msgstr "THL Transcripción Fonética Simplicada del Tibetano Estándar"
+
+#: models.py:73 models.py:94
+msgid "THL Extended Wylie Transliteration"
+msgstr "THL Transliteración Wylie Extendida"
+
+#: templates/translator/base.html:7
+msgid "Tibetan <-> Spanish"
+msgstr "Tibetano <-> Español"
+
+#: templates/translator/index.html:9
+msgid "Click the button to the language you want to translate the word"
+msgstr "Pulsa el botón del lenguage al que quieres traducir"
+
+#: templates/translator/index.html:10
+msgid "No results"
+msgstr "No hay resultados"
+
+#: templates/translator/index.html:12
+msgid "Tibetan"
+msgstr "Tibetano"
+
+#: templates/vocabulary_game/base.html:7
+msgid "Vocabulary tibetan game"
+msgstr "Juego de vocabulario tibetano"
