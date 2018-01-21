@@ -25,7 +25,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from random import shuffle
 
-from core.models import Word
+from .models import Word
 
 NUM_OPTIONS = 4
 
@@ -85,4 +85,4 @@ def translator(request):
     return render(request, 'translator/index.html')
 
 def health(request):
-    return HttpResponse(PageView.objects.count())
+    return HttpResponse(Word.objects.count())
