@@ -1,0 +1,42 @@
+{% load i18n %}
+
+{% load bootstrap3 %}
+
+{% load staticfiles %}
+
+{% trans "Tibetan <-> Spanish" as the_title %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  {# Load CSS #}
+  {% bootstrap_css %}
+  {# Display django.contrib.messages as Bootstrap alerts #}
+  {% bootstrap_messages %}
+  <!-- Sign in styles -->
+  <link href="{% static "css/jumbotron-narrow.css" %}" rel="stylesheet">
+  <title>{{ the_title }}</title>
+</head>
+<body>
+  <div class="container">
+      <div class="header clearfix">
+          <!--nav>
+              <ul class="nav nav-pills pull-right">
+                  <li class="active" role="presentation">
+                      <a href="#">Home</a>
+                  </li>
+                  <li role="presentation">
+                      <a href="#">About</a>
+                  </li>
+                  <li role="presentation">
+                      <a href="#">Contact</a>
+                  </li>
+              </ul>
+          </nav-->
+          <h3 class="text-muted">{{ the_title }}</h3>
+      </div>
+      {% block content %}{% endblock %}
+  </div>
+</body>
+</html>
