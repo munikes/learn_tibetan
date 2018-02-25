@@ -38,7 +38,7 @@ class Category(models.Model):
         verbose_name_plural = _('Categories')
         ordering = ['category']
 
-    def __unicode__(self):
+    def __str__(self):
         return self.category
 
 
@@ -58,7 +58,7 @@ class Translation(models.Model):
         ordering = ['translation']
         unique_together = (('translation', 'language_code'),)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.translation
 
 
@@ -79,7 +79,7 @@ class Phrase(models.Model):
     class Meta:
         ordering = ['phrase']
 
-    def __unicode__(self):
+    def __str__(self):
         return self.phrase
 
 
@@ -102,7 +102,7 @@ class Word(models.Model):
     class Meta:
         ordering = ['word']
 
-    def __unicode__(self):
+    def __str__(self):
         return self.word
 
 class Score(models.Model):
