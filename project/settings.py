@@ -128,7 +128,7 @@ USE_TZ = True
 
 
 # Initial data
-FIXTURE_DIRS = (os.path.join(BASE_DIR, 'core', 'fixtures'),)
+FIXTURE_DIRS = (os.path.join(BASE_DIR, 'core'),)
 
 
 # Static files (CSS, JavaScript, Images)
